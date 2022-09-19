@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+float somavet(float x[], int c);
+void numeroalt(float x[]);
+
+	float somavet(float x[], int c)
+	{
+	static float somaa;
+	int aux;
+
+	if (c<10){
+		aux=x[c];
+		if (aux%2 ==0){
+		somaa += x[c];
+		c+=1;
+	somavet(x, c);
+	} else {
+		c+=1;
+		somavet(x, c);
+	}
+    }else{
+    		aux=somaa;
+		somaa=0;
+		return aux;
+	}
+}
+void numeroalt  (float x[]){
+	int i=0;
+
+
+	for (i; i<=10;i++){
+		x[i] = rand() % 50;
+		printf("%.1f | ", x[i]);
+
+
+	}
+}
+
+int main (){
+
+float vet[10], soma = 0, soma_m = 0;
+int  i=1, vetor_m=0;
+srand(time(NULL));
+
+		for (i; i<=5; i+=1){
+				printf("\n %d* Vetor: ", i);
+				numeroalt(vet);
+				soma = somavet(vet, 0);
+				if (soma > soma_m){
+					soma_m = soma;
+					vetor_m = i;
+				}
+				printf(" \n A soma dos numeros pares do vetor %d: %.1f\n", i, soma);
+				printf("\n---------------------------------\n");
+		}
+
+		printf("\n A maior soma de numero pares: \n Vetor %d:  %1.f", vetor_m, soma_m);
+}
